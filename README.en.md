@@ -1,10 +1,18 @@
 # Java to FDE Starter Kit
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/itwangyiwei-sketch/java-to-fde-starter-kit)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Java 17](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+[![Spring Boot 3.5](https://img.shields.io/badge/Spring_Boot-3.5-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![Spring AI 1.1](https://img.shields.io/badge/Spring_AI-1.1-green.svg)](https://spring.io/projects/spring-ai)
+
 [中文](README.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md) · [Apache-2.0 License](LICENSE)
 
 A local Java learning project for an invoice reconciliation workflow. It demonstrates read-only MCP tools, an explicit execution path, deterministic business guards, fault injection, and an evaluation harness that checks business outcomes. The default model is a local mock; no API key, database, or Docker is needed.
 
 ## Quick start
+
+> **💡 Run in Browser with Codespaces**: If you do not have local Java 17 or Maven, click the **[Open in GitHub Codespaces](https://codespaces.new/itwangyiwei-sketch/java-to-fde-starter-kit)** badge above to launch a ready-to-run cloud development container in 30 seconds.
 
 Install Java 17, Maven 3.6.3+, and Python 3. This project targets Spring Boot 3.5.16 and Spring AI 1.1.8.
 

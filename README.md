@@ -1,5 +1,11 @@
 # Java to FDE Starter Kit
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/itwangyiwei-sketch/java-to-fde-starter-kit)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Java 17](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+[![Spring Boot 3.5](https://img.shields.io/badge/Spring_Boot-3.5-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![Spring AI 1.1](https://img.shields.io/badge/Spring_AI-1.1-green.svg)](https://spring.io/projects/spring-ai)
+
 [English](README.en.md) · [学习路线](ROADMAP.md) · [参与贡献](CONTRIBUTING.md) · [Apache-2.0 许可](LICENSE)
 
 一个能在本机运行的 Java 入门项目：用发票核对场景练习 **受控工具调用、确定性兜底、故障注入和业务评测**。它把「接口返回成功」与「业务决策正确」分开验证。默认使用本地模拟模型和固定测试数据，不需要 API Key、数据库或 Docker。
@@ -7,6 +13,8 @@
 这个仓库是教学示例，适合读代码、改规则、跑反例。当前数据和安全边界只覆盖本机演练。
 
 ## 5 分钟跑起来
+
+> **💡 浏览器一键秒开**：如果你手头没有 Java 17 或 Maven 环境，直接点击上方的 **[Open in GitHub Codespaces](https://codespaces.new/itwangyiwei-sketch/java-to-fde-starter-kit)** 按钮，GitHub 会在云端为你自动分配好预装 Java 17、Maven 和 Python 的容器环境，30 秒内在浏览器中直接运行演练。
 
 需要 Java 17、Maven 3.6.3+ 和 Python 3。项目使用 Spring Boot 3.5.16、Spring AI 1.1.8；[Spring AI 1.1 文档](https://docs.spring.io/spring-ai/reference/1.1/getting-started.html)列明其支持 Spring Boot 3.4/3.5，[Spring Boot 文档](https://docs.spring.io/spring-boot/3.5/system-requirements.html)列明 Java 17 为最低版本。
 
