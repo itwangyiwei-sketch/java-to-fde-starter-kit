@@ -18,8 +18,16 @@
 
 需要 Java 17、Maven 3.6.3+ 和 Python 3。项目使用 Spring Boot 3.5.16、Spring AI 1.1.8；[Spring AI 1.1 文档](https://docs.spring.io/spring-ai/reference/1.1/getting-started.html)列明其支持 Spring Boot 3.4/3.5，[Spring Boot 文档](https://docs.spring.io/spring-boot/3.5/system-requirements.html)列明 Java 17 为最低版本。
 
+### 方式 A：单命令极速演练（推荐，自动启停）
 ```bash
 cd java-to-fde-starter-kit
+./run_demo.sh
+```
+`run_demo.sh` 会自动在后台启动 Spring Boot 服务、轮询等待 8080 就绪、顺序执行业务 Eval 评测与 MCP 冒烟测试，并在结束后自动优雅回收后台服务。
+
+### 方式 B：常规双终端调试
+终端 1 启动后端微服务：
+```bash
 mvn test
 mvn spring-boot:run
 ```

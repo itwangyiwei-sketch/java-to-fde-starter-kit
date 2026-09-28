@@ -202,6 +202,20 @@ def main(argv=None):
         return 2
 
     url = args.base_url.rstrip("/") + "/api/reconcile"
+
+    # Pre-flight health check to avoid dumping 15 raw socket errors
+    try:
+        req = urllib.request.Request(url, data=b"{}", headers={"Content-Type": "application/json"})
+        urllib.request.urlopen(req, timeout=1.5)
+    except urllib.error.HTTPError:
+        pass  # HTTP 400 or other application response means server is alive
+    except urllib.error.URLError as exc:
+        if "Connection refused" in str(exc) or getattr(exc, "errno", None) in (61, 111):
+            print(f"\n❌ 连接失败：未检测到 Spring Boot 服务在 {args.base_url} 运行！", file=sys.stderr)
+            print("👉 解决方式 1（双终端）：先在终端运行 'mvn spring-boot:run'，启动后再运行评测", file=sys.stderr)
+            print("👉 解决方式 2（单终端一键秒跑）：直接在项目根目录运行 './run_demo.sh'\n", file=sys.stderr)
+            return 1
+
     results = [run_case(case, url, args.timeout) for case in cases]
     summary = summarize_results(results)
     report = {

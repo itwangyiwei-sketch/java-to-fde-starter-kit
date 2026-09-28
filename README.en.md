@@ -16,6 +16,14 @@ A local Java learning project for an invoice reconciliation workflow. It demonst
 
 Install Java 17, Maven 3.6.3+, and Python 3. This project targets Spring Boot 3.5.16 and Spring AI 1.1.8.
 
+### Option A: One-command demo (Recommended)
+```bash
+./run_demo.sh
+```
+`run_demo.sh` starts the Spring Boot app in the background, waits for port 8080, runs both `eval/run.py` and `scripts/mcp_smoke.py`, and shuts down cleanly.
+
+### Option B: Manual dual-terminal execution
+Terminal 1:
 ```bash
 mvn test
 mvn spring-boot:run
