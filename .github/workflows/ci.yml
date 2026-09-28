@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+
+      - name: Java tests
+        run: mvn --batch-mode package
+
+      - name: Business outcome evaluations
+        shell: bash
+        run: |
+          set -euo pipefail
+          java -jar target/java-to-fde-starter-kit-0.1.0-SNAPSHOT.jar > /tmp/fde-app.log 2>&1 &
+          app_pid=$!
+          trap 'kill "$app_pid" 2>/dev/null || true' EXIT
+
+          ready=0
+          for _ in {1..60}; do
+            if curl -fsS -o /dev/null \
+              -H 'Content-Type: application/json' \
+              -d '{"tenantId":"acme","query":"请核对发票 INV-1001","demoFault":"NONE"}' \
+              http://127.0.0.1:8080/api/reconcile; then
+              ready=1
+              break
+            fi
+            if ! kill -0 "$app_pid" 2>/dev/null; then
+              break
+            fi
+            sleep 2
+          done
+
+          if [[ "$ready" -ne 1 ]]; then
+            cat /tmp/fde-app.log
+            exit 1
+          fi
+
+          python3 eval/run.py --base-url http://127.0.0.1:8080
+          python3 scripts/mcp_smoke.py --base-url http://127.0.0.1:8080

@@ -1,0 +1,24 @@
+# Maven
+target/
+
+# IDEs
+.idea/
+*.iml
+.project
+.classpath
+.settings/
+.vscode/
+
+# Python eval runner
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+eval/reports/
+
+# Local credentials and machine files
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
